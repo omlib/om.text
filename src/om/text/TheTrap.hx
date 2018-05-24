@@ -35,14 +35,17 @@ class TheTrap {
     ];
 
     public static function convert( text : String ) : String {
-        var str = "";
+        var buf = new StringBuf();
         for( c in text.split( '' ) )  {
             c = c.toLowerCase();
-            var chars = MAP.get(c);
-            if( chars == null ) chars = [" "];
-            str += MAP.exists(c) ? MAP.get(c)[Math.floor(Math.random() * chars.length)] : c;
+            if( MAP.exists( c ) ) {
+                var chars = MAP.get( c );
+                buf.add( chars[Math.floor(Math.random() * chars.length)] );
+            } else {
+                buf.add( c );
+            }
         }
-        return str;
+        return buf.toString();
     }
 
 }
