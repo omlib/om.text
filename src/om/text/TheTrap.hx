@@ -3,9 +3,9 @@ package om.text;
 /**
     іŁ'Ϟ Д ͳƦΛǷ!
 */
-class TheTrap {
+class TheTrap implements om.text.Encoder {
 
-    public static var MAP : Map<String,Array<String>> = [
+    public var map : Map<String,Array<String>> = [
         "a" => ["\u0040", "\u0104", "\u023a", "\u0245", "\u0394", "\u039b", "\u0414"],
         "b" => ["\u00df", "\u0181", "\u0243", "\u026e", "\u03b2", "\u0e3f"],
         "c" => ["\u00a9", "\u023b", "\u03fe"],
@@ -34,18 +34,20 @@ class TheTrap {
         "z" => ["\u01b5", "\u0240"]
     ];
 
-    public static function convert( text : String ) : String {
-        var buf = new StringBuf();
-        for( c in text.split( '' ) )  {
-            c = c.toLowerCase();
-            if( MAP.exists( c ) ) {
-                var chars = MAP.get( c );
-                buf.add( chars[Math.floor(Math.random() * chars.length)] );
-            } else {
-                buf.add( c );
-            }
+    public function new() {}
+
+    public function encode( text : String ) : String {
+        var ar = new Array<String>();
+        var ch : String = null;
+        for( i in 0...text.length ) {
+            ch = text.charAt(i).toLowerCase();
+            if( map.exists( ch ) ) {
+                var cc = map.get( ch );
+                var rc = cc[Math.floor(Math.random() * cc.length)];
+                ar.push( rc );
+            } else ar.push( ch );
         }
-        return buf.toString();
+        return ar.join("");
     }
 
 }

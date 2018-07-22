@@ -1,7 +1,7 @@
 {
     "name": "om.text",
     "version": "0.0.0",
-    "description": "Text tools",
+    "description": "Text encoding fun",
     "tags": ["om","text"],
     "url": "https://github.com/tong/om.text",
     "license": "OM",
